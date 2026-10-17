@@ -1,0 +1,522 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="رحلة النخبة للسفر والسياحة (Elite Trip)، بغداد: كروبات سياحية، حفلات، وفيزا.">
+<link rel="icon" href="assets/emblem.png">
+<title>رحلة النخبة | Elite Trip</title>
+
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Reem+Kufi:wght@500;700&family=IBM+Plex+Sans+Arabic:wght@400;500;700&display=swap">
+<style>
+/* Layout: boarding-pass motif on black bands, brand orange accent from the logo, destination "postcards" with airport codes. */
+:root{
+  --bg:#F7F5F3; --surface:#FFFFFF; --ink:#141210; --muted:#5E5650; --line:#E6E0DA;
+  --sky:#0D0D0D; --sky-2:#211C18; --sun:#F28322; --sun-ink:#1A0D00; --sun-text:#B85A0B; --on-sky:#FAF7F4;
+  --display:"Reem Kufi","IBM Plex Sans Arabic",Tahoma,sans-serif;
+  --body:"IBM Plex Sans Arabic","Segoe UI",Tahoma,sans-serif;
+  --r:14px;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0E0D0C; --surface:#191715; --ink:#F2EDE8; --muted:#A89F97; --line:#2E2925;
+  --sky:#050505; --sky-2:#1A1613; --sun:#F58E33; --sun-ink:#1A0D00; --sun-text:#F58E33; --on-sky:#FAF7F4; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0E0D0C; --surface:#191715; --ink:#F2EDE8; --muted:#A89F97; --line:#2E2925;
+  --sky:#050505; --sky-2:#1A1613; --sun:#F58E33; --sun-ink:#1A0D00; --sun-text:#F58E33; --on-sky:#FAF7F4; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.75}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--sky)}
+.wrap{max-width:1160px;margin-inline:auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--display);line-height:1.3;text-wrap:balance;margin:0}
+p{margin:0}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--sun);outline-offset:2px;border-radius:6px}
+.btn{display:inline-flex;align-items:center;gap:8px;font:700 15px var(--body);padding:12px 22px;border-radius:999px;border:0;cursor:pointer;text-decoration:none;transition:transform .15s}
+.btn:hover{transform:translateY(-1px)}
+.btn-sun{background:var(--sun);color:var(--sun-ink)}
+.btn-ghost{background:transparent;color:var(--on-sky);border:1.5px solid color-mix(in srgb,var(--on-sky) 45%,transparent)}
+.eyebrow{font-size:13px;font-weight:700;letter-spacing:.04em;color:var(--sun-text)}
+.hero .eyebrow,.contact .eyebrow{color:var(--sun)}
+section{padding-block:72px}
+.sec-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:16px;margin-bottom:32px}
+.sec-head h2{font-size:clamp(26px,4vw,36px)}
+.sec-head p{color:var(--muted);max-width:52ch}
+
+/* header */
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:var(--sky);color:var(--on-sky)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:12px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+.brand img{width:52px;height:auto}
+.brand b{font:700 24px var(--display);color:var(--on-sky)}
+.brand small{display:block;font-size:11px;opacity:.75;line-height:1.2}
+nav{display:flex;gap:22px;font-weight:500;font-size:15px}
+nav a{text-decoration:none;opacity:.85}
+nav a:hover{opacity:1;color:var(--sun)}
+@media (max-width:820px){nav{display:none}}
+
+/* hero */
+.hero{background:radial-gradient(120% 90% at 85% 10%,#3A2412 0%,var(--sky) 55%);color:var(--on-sky);padding-block:56px 88px;position:relative;overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:center}
+@media (max-width:900px){.hero .wrap{grid-template-columns:1fr}}
+.hero h1{font-size:clamp(34px,6vw,62px)}
+.hero h1 span{color:var(--sun)}
+.hero p.lead{margin-top:16px;font-size:18px;max-width:46ch;opacity:.9}
+.hero .ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.route{position:absolute;inset:auto 0 0 0;height:120px;opacity:.35;pointer-events:none}
+/* boarding pass */
+.pass{background:var(--surface);color:var(--ink);border-radius:18px;display:grid;grid-template-columns:1fr auto;box-shadow:0 24px 60px rgba(0,0,0,.28);min-width:0}
+.pass-main{padding:22px;min-width:0}
+.pass-stub{border-inline-start:2px dashed var(--line);padding:22px 16px;display:flex;flex-direction:column;justify-content:space-between;align-items:center;gap:12px;font-size:12px;color:var(--muted)}
+.pass-stub img{width:44px;height:auto}
+.pass label{display:block;font-size:12px;font-weight:700;color:var(--muted);margin-bottom:4px}
+.pass .row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+.pass input,.pass select{width:100%;font:500 15px var(--body);padding:10px 12px;border:1.5px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink)}
+.codes{display:flex;align-items:center;justify-content:space-between;gap:8px;font:700 30px var(--display);direction:ltr}
+.codes i{flex:1;border-top:2px dotted var(--line);position:relative;height:0}
+.codes i::after{content:"✈";position:absolute;top:-14px;left:50%;transform:translateX(-50%);font-size:18px;color:var(--sun);font-style:normal}
+.codes-sub{display:flex;justify-content:space-between;direction:ltr;font-size:12px;color:var(--muted)}
+.pass .btn{width:100%;justify-content:center;margin-top:16px}
+
+/* trust strip */
+.strip{background:var(--surface);border-bottom:1px solid var(--line)}
+.strip .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;padding-block:22px}
+@media (max-width:700px){.strip .wrap{grid-template-columns:repeat(2,1fr)}}
+.strip div{display:flex;flex-direction:column}
+.strip b{font:700 26px var(--display);color:var(--sun-text);font-variant-numeric:tabular-nums}
+.strip span{font-size:14px;color:var(--muted)}
+
+/* destinations */
+.filters{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font:500 14px var(--body);padding:8px 16px;border-radius:999px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--sky);color:var(--on-sky);border-color:var(--sky)}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+@media (max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:560px){.grid{grid-template-columns:1fr}}
+.card{background:var(--surface);border-radius:var(--r);overflow:hidden;border:1px solid var(--line);display:flex;flex-direction:column;min-width:0}
+.postcard{aspect-ratio:16/10;max-width:100%;position:relative;display:flex;align-items:end;padding:16px;color:#fff}
+.postcard h3{font-size:30px;text-shadow:0 2px 12px rgba(0,0,0,.25)}
+.stamp{position:absolute;top:14px;left:14px;border:2px solid rgba(255,255,255,.85);border-radius:8px;padding:4px 10px;font:700 15px var(--display);letter-spacing:.06em;direction:ltr;transform:rotate(-6deg);color:#fff}
+.card-body{padding:16px;display:flex;flex-direction:column;gap:10px;flex:1}
+.meta{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:13px;color:var(--muted)}
+.card-foot{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:auto;padding-top:10px;border-top:1px solid var(--line)}
+.price{font-variant-numeric:tabular-nums}
+.price b{font:700 20px var(--display)}
+.price small{color:var(--muted);font-size:12px}
+.link{font-weight:700;font-size:14px;color:var(--sun-text);background:none;border:0;cursor:pointer;font-family:var(--body);padding:4px 0}
+
+.postcard{background-color:#2a1a0e}
+.dates{font-weight:700;font-size:14px}
+.hotels{font-size:14px;color:var(--muted)}
+.inc{list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:6px}
+.inc li{font-size:12px;padding:3px 10px;border-radius:999px;background:color-mix(in srgb,var(--sun) 14%,transparent);color:var(--ink)}
+.fine{margin-top:20px;font-size:13px;color:var(--muted);max-width:80ch}
+.pkg-img{aspect-ratio:16/9;max-width:100%;border-radius:10px;margin:-8px -8px 4px}
+.pkg-note{font-size:13px;color:var(--sun-text)}
+.pkg.feat .pkg-note{color:var(--sun)}
+.vsearch label{display:block;font-size:13px;font-weight:700;color:var(--muted);margin-bottom:4px}
+.vsearch input{font:500 15px var(--body);padding:10px 14px;border:1.5px solid var(--line);border-radius:999px;background:var(--surface);color:var(--ink);width:min(260px,100%)}
+.vgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media (max-width:900px){.vgrid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:560px){.vgrid{grid-template-columns:1fr}}
+.visa{background:var(--bg);border:1px solid var(--line);border-radius:var(--r);padding:16px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.visa header{position:static;background:none;color:inherit;z-index:auto;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.visa header img{width:40px;height:30px;border-radius:4px;box-shadow:0 0 0 1px var(--line);object-fit:cover}
+.visa h3{font-size:19px}
+.refund{font-size:11px;font-weight:700;padding:2px 8px;border-radius:999px;background:color-mix(in srgb,#1FA855 18%,transparent);color:var(--ink)}
+.visa table{width:100%;border-collapse:collapse;font-size:14px}
+.visa td{padding:6px 0;border-bottom:1px solid var(--line);vertical-align:top}
+.visa td:nth-child(2){color:var(--muted);font-size:13px;padding-inline:8px}
+.visa .vp{font-weight:700;text-align:left;white-space:nowrap;font-variant-numeric:tabular-nums}
+.visa .req{font-size:13px;color:var(--muted)}
+.visa .link{align-self:flex-start;margin-top:auto}
+.empty{color:var(--muted)}
+/* packages */
+.pkgs{background:var(--surface);border-block:1px solid var(--line)}
+.pkg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+@media (max-width:900px){.pkg-grid{grid-template-columns:1fr}}
+.pkg{border:1.5px solid var(--line);border-radius:var(--r);padding:24px;display:flex;flex-direction:column;gap:14px;background:var(--bg);min-width:0}
+.pkg.feat{background:var(--sky);color:var(--on-sky);border-color:var(--sky)}
+.pkg.feat .pkg-dur,.pkg.feat li{color:color-mix(in srgb,var(--on-sky) 80%,transparent)}
+.tag{align-self:flex-start;font-size:12px;font-weight:700;padding:3px 10px;border-radius:999px;background:var(--sun);color:var(--sun-ink)}
+.pkg h3{font-size:24px}
+.pkg-dur{font-size:14px;color:var(--muted)}
+.pkg ul{list-style:none;padding:0;margin:0;display:grid;gap:6px;font-size:15px}
+.pkg li::before{content:"✓";color:var(--sun);font-weight:700;margin-inline-end:8px}
+.pkg .price b{font-size:28px}
+.pkg .btn{justify-content:center;margin-top:auto}
+.pkg:not(.feat) .btn{background:var(--sky);color:var(--on-sky)}
+
+/* services */
+.svc{display:grid;grid-template-columns:repeat(3,1fr);gap:28px 32px}
+@media (max-width:820px){.svc{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:500px){.svc{grid-template-columns:1fr}}
+.svc div{display:grid;grid-template-columns:44px 1fr;gap:4px 14px;align-items:start}
+.svc svg{grid-row:span 2;width:44px;height:44px;padding:10px;border-radius:12px;background:color-mix(in srgb,var(--sun) 18%,transparent);stroke:var(--ink);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.svc h3{font-size:18px}
+.svc p{font-size:15px;color:var(--muted)}
+
+/* about */
+.about .wrap{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+@media (max-width:820px){.about .wrap{grid-template-columns:1fr}}
+.about-logo{display:block;width:160px;height:auto;margin-bottom:20px;background:#fff;border-radius:16px;padding:12px}
+.about p{color:var(--muted);margin-top:14px;max-width:60ch}
+.steps{display:grid;gap:14px;counter-reset:s;list-style:none;padding:0;margin:0}
+.steps li{counter-increment:s;display:grid;grid-template-columns:40px 1fr;gap:14px;align-items:start;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px}
+.steps li::before{content:counter(s,arabic-indic);display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:var(--sky);color:var(--on-sky);font:700 18px var(--display)}
+.steps b{display:block}
+.steps span{font-size:14px;color:var(--muted)}
+
+/* testimonials */
+.quotes{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+@media (max-width:900px){.quotes{grid-template-columns:1fr}}
+blockquote{margin:0;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:22px;display:flex;flex-direction:column;gap:14px}
+blockquote p{font-size:16px}
+blockquote footer{font-size:14px;color:var(--muted)}
+blockquote footer b{color:var(--ink)}
+.stars{color:var(--sun);letter-spacing:2px}
+.sample{font-size:12px;font-weight:700;padding:3px 10px;border-radius:999px;border:1px dashed var(--muted);color:var(--muted)}
+
+/* contact */
+.contact{background:var(--sky);color:var(--on-sky)}
+.contact .wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:40px}
+@media (max-width:900px){.contact .wrap{grid-template-columns:1fr}}
+.contact h2{font-size:clamp(26px,4vw,36px)}
+.contact .info{display:grid;gap:14px;margin-top:22px}
+.contact .info div{display:flex;flex-direction:column}
+.contact .info span{font-size:13px;opacity:.7}
+.contact .info b{font-size:17px;direction:ltr;text-align:right;user-select:all}
+form.book{background:var(--surface);color:var(--ink);border-radius:18px;padding:24px;display:grid;grid-template-columns:1fr 1fr;gap:14px;min-width:0}
+@media (max-width:560px){form.book{grid-template-columns:1fr}}
+form.book .full{grid-column:1/-1}
+form.book label{display:block;font-size:13px;font-weight:700;color:var(--muted);margin-bottom:4px}
+form.book input,form.book select,form.book textarea{width:100%;font:500 15px var(--body);padding:11px 12px;border:1.5px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink)}
+form.book textarea{min-height:90px;resize:vertical}
+form.book .btn{justify-content:center}
+.err{color:#B3261E;font-size:13px}
+.ok{grid-column:1/-1;background:color-mix(in srgb,var(--sun) 16%,transparent);border-radius:12px;padding:14px;font-size:15px}
+.ok pre{white-space:pre-wrap;font-family:var(--body);margin:8px 0 0;font-size:14px}
+
+footer.site{background:var(--sky);color:var(--on-sky);font-size:14px}
+.credits{font-size:11px;opacity:.6;padding-block:0 18px}
+.credits a{color:inherit}
+footer.site .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;padding-block:22px;opacity:.85}
+
+/* mascot نخوب */
+.hero-side{position:relative;padding-top:160px;min-width:0}
+.hero-bot{position:absolute;top:0;left:-6px;direction:ltr;display:flex;align-items:flex-end;gap:8px;z-index:2;pointer-events:none}
+.hero-bot img{width:150px;height:auto;filter:drop-shadow(0 14px 22px rgba(0,0,0,.45));animation:bob 4s ease-in-out infinite}
+.bubble{direction:rtl;text-align:right;background:var(--surface);color:var(--ink);font-size:14px;font-weight:500;line-height:1.5;padding:10px 14px;border-radius:16px 16px 16px 4px;box-shadow:0 8px 20px rgba(0,0,0,.18);max-width:220px;margin-bottom:96px}
+.bubble b{color:var(--sun-text)}
+@keyframes bob{50%{transform:translateY(-6px)}}
+@media (max-width:560px){.hero-side{padding-top:128px}.hero-bot img{width:118px}.bubble{margin-bottom:72px;font-size:13px}}
+.bot-note{display:flex;align-items:center;gap:14px;margin-bottom:16px}
+.bot-note img{width:56px;height:56px;border-radius:50%;flex:none}
+.bot-note p{margin:0;font-size:15px;color:var(--muted)}
+.bot-note b{color:var(--ink)}
+.contact-bot{display:flex;align-items:flex-end;gap:10px;margin-top:28px}
+.contact-bot img{width:130px;height:auto;filter:drop-shadow(0 12px 20px rgba(0,0,0,.5))}
+.contact-bot .bubble{margin-bottom:70px}
+.ok{display:flex;gap:12px;align-items:flex-start}
+.ok > img{width:48px;height:48px;border-radius:50%;flex:none}
+.ok > div{min-width:0}
+.wa{position:fixed;bottom:calc(20px + env(safe-area-inset-bottom,0px));left:calc(20px + env(safe-area-inset-left,0px));z-index:70;width:58px;height:58px;border-radius:50%;background:#1FA855;display:grid;place-items:center;box-shadow:0 10px 26px rgba(0,0,0,.25)}
+.wa{width:auto;height:auto;background:none;box-shadow:none;display:flex;align-items:center;gap:8px;text-decoration:none}
+.wa .ava{position:relative;width:62px;height:62px;border-radius:50%;box-shadow:0 10px 26px rgba(0,0,0,.3)}
+.wa .ava img{width:62px;height:62px;border-radius:50%;display:block}
+.wa .ava span{position:absolute;bottom:-2px;right:-2px;width:26px;height:26px;border-radius:50%;background:#1FA855;display:grid;place-items:center;border:2px solid var(--surface)}
+.wa svg{width:15px;height:15px;fill:#fff}
+.wa .tip{background:var(--surface);color:var(--ink);font-size:13px;font-weight:700;padding:8px 12px;border-radius:12px;box-shadow:0 6px 18px rgba(0,0,0,.18)}
+@media (max-width:560px){.wa .tip{display:none}}
+@media (prefers-reduced-motion:reduce){.hero-bot img{animation:none}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+html{scroll-behavior:smooth}
+
+img{max-width:100%} [hidden]{display:none!important} body{margin:0}
+</style>
+</head>
+<body>
+
+
+<header>
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="رحلة النخبة للسفر والسياحة">
+      <img src="assets/emblem-white.png" alt="" width="52" height="43">
+      <span><b>رحلة النخبة</b><small>للسفر والسياحة</small></span>
+    </a>
+    <nav aria-label="القائمة">
+      <a href="#destinations">الكروبات</a><a href="#packages">الحفلات</a><a href="#visa">الفيزا</a><a href="#services">خدماتنا</a><a href="#about">من نحن</a><a href="#contact">تواصل معنا</a>
+    </nav>
+    <a class="btn btn-sun" href="#contact">احجز رحلتك</a>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow">ELITE TRIP · رحلة النخبة للسفر والسياحة</p>
+      <h1>سافر بمستوى <span>النخبة</span>، ونحن نتكفّل بالتفاصيل</h1>
+      <p class="lead">تذاكر طيران، فنادق مختارة، تأشيرات، وبرامج سياحية متكاملة للعائلات والأزواج ورجال الأعمال. خطّط معنا مرة واحدة واستمتع بالرحلة كلها.</p>
+      <div class="ctas">
+        <a class="btn btn-sun" href="#packages">استعرض الباقات</a>
+        <a class="btn btn-ghost" href="#contact">اطلب عرض سعر</a>
+      </div>
+    </div>
+    <div class="hero-side">
+    <div class="hero-bot"><img src="assets/nakhob.webp" alt="نخوب، مساعد رحلة النخبة" width="420" height="504"><p class="bubble">أهلاً! أنا <b>نخوب</b>، اختر وجهتك وأنا أجهّز لك الطلب.</p></div>
+    <form class="pass" id="quick" aria-label="بحث سريع عن رحلة">
+      <div class="pass-main">
+        <div class="codes"><span>BGW</span><i></i><span id="qcode">IST</span></div>
+        <div class="codes-sub"><span>بغداد</span><span id="qcity">إسطنبول</span></div>
+        <div class="row">
+          <div><label for="q-dest">الوجهة</label>
+            <select id="q-dest"></select></div>
+          <div><label for="q-month">شهر السفر</label>
+            <select id="q-month"><option>نوفمبر</option><option>ديسمبر</option><option>يناير</option><option>فبراير</option><option>مارس</option><option>أبريل</option><option>يونيو</option><option>يوليو</option><option>أغسطس</option></select></div>
+        </div>
+        <div class="row">
+          <div><label for="q-adults">البالغون</label><input id="q-adults" type="number" min="1" max="20" value="2"></div>
+          <div><label for="q-kids">الأطفال</label><input id="q-kids" type="number" min="0" max="20" value="0"></div>
+        </div>
+        <button class="btn btn-sun" type="submit">ابدأ طلب الحجز</button>
+      </div>
+      <div class="pass-stub" aria-hidden="true"><span>بطاقة صعود</span><img src="assets/emblem.png" alt="" width="44" height="36"><span>NKB</span></div>
+    </form>
+    </div>
+  </div>
+  <svg class="route" viewBox="0 0 1200 120" preserveAspectRatio="none" aria-hidden="true"><path d="M0 100 C 300 10, 600 140, 900 40 S 1200 60, 1200 60" stroke="#F28322" stroke-width="2" stroke-dasharray="6 10" fill="none"/></svg>
+</section>
+
+<div class="strip">
+  <div class="wrap">
+    <div><b id="st-groups">٩</b><span>كروبات قادمة من بغداد</span></div>
+    <div><b id="st-visas">٢٢</b><span>دولة نصدر لها الفيزا</span></div>
+    <div><b id="st-from">٤٢٥$</b><span>أقل سعر كروب حالياً</span></div>
+    <div><b>٨٦٩</b><span>رقم إجازة الشركة</span></div>
+  </div>
+</div>
+
+<section id="destinations">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><p class="eyebrow">الكروبات</p><h2>كروبات قادمة من مطار بغداد</h2></div>
+      <div class="filters" role="group" aria-label="تصفية الكروبات">
+        <button class="chip" aria-pressed="true" data-f="all">الكل</button>
+        <button class="chip" aria-pressed="false" data-f="tr">تركيا</button>
+        <button class="chip" aria-pressed="false" data-f="lb">لبنان</button>
+        <button class="chip" aria-pressed="false" data-f="eg">مصر</button>
+        <button class="chip" aria-pressed="false" data-f="gulf">عُمان</button>
+        <button class="chip" aria-pressed="false" data-f="asia">آسيا</button>
+      </div>
+    </div>
+    <div class="grid" id="dest-grid"></div>
+    <p class="fine">الأسعار بالدولار للشخص في غرفة مزدوجة، وهي أقل سعر متاح للكروب. السعر يتغير حسب الفندق والتاريخ والتوفر، ونؤكده لك قبل الحجز. آخر تحديث: <span class="upd"></span></p>
+  </div>
+</section>
+
+<section class="pkgs" id="packages">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><p class="eyebrow">الحفلات والمناسبات</p><h2>سافر لحفلتك ونحن نرتّب الباقي</h2></div>
+      <p>طيران وفندق بسعر واحد للشخص في غرفة مزدوجة. تذاكر الحفلات تُحجز معنا عند الطلب.</p>
+    </div>
+    <div class="pkg-grid" id="ev-grid"></div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="wrap">
+    <div class="sec-head"><div><p class="eyebrow">خدماتنا</p><h2>كل ما تحتاجه رحلتك في مكان واحد</h2></div></div>
+    <div class="svc">
+      <div><svg viewBox="0 0 24 24"><path d="M2 16l20-6-3-3-7 2-5-4-2 1 3 5-4 1-2-1-1 1z"/><path d="M3 21h18"/></svg><h3>تذاكر الطيران</h3><p>أفضل الأسعار على الخطوط المباشرة ومرونة في التعديل.</p></div>
+      <div><svg viewBox="0 0 24 24"><path d="M3 21V8l9-5 9 5v13"/><path d="M9 21v-6h6v6"/></svg><h3>حجز الفنادق</h3><p>فنادق ومنتجعات نزورها ونقيّمها بأنفسنا.</p></div>
+      <div><svg viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="2"/><circle cx="12" cy="10" r="3"/><path d="M8 17h8"/></svg><h3>التأشيرات</h3><p>تجهيز الملف ومتابعة الطلب حتى صدور التأشيرة.</p></div>
+      <div><svg viewBox="0 0 24 24"><path d="M4 21V10l8-6 8 6v11z"/><path d="M12 4v17M4 14h16"/></svg><h3>العمرة والزيارة</h3><p>برامج عمرة بفنادق قريبة من الحرم ونقل مريح.</p></div>
+      <div><svg viewBox="0 0 24 24"><path d="M12 21s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.5-7 10-7 10z"/></svg><h3>شهر العسل</h3><p>برامج خاصة للعرسان بتفاصيل تبقى في الذاكرة.</p></div>
+      <div><svg viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg><h3>التأمين والنقل</h3><p>تأمين سفر، سيارات خاصة، واستقبال في المطار.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="pkgs" id="visa">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><p class="eyebrow">الفيزا</p><h2>أسعار الفيزا ومدة الإصدار</h2></div>
+      <div class="vsearch"><label for="v-q">ابحث عن دولة</label><input id="v-q" type="search" placeholder="مثلاً: تايلند"></div>
+    </div>
+    <div class="vgrid" id="v-grid"></div>
+    <p class="fine">الأسعار بالدولار. المبلغ غير مسترجع في حال رفض الطلب، إلا في الدول المكتوب عليها "مسترجع عند الرفض". تأشيرات أوروبا وجورجيا حسب الطلب، تواصل معنا.</p>
+  </div>
+</section>
+
+<section class="about pkgs" id="about">
+  <div class="wrap">
+    <div>
+      <img class="about-logo" src="assets/logo.png" alt="شعار رحلة النخبة للسفر والسياحة" width="600" height="612">
+      <p class="eyebrow">من نحن</p>
+      <h2>رحلة النخبة: شريكك في السفر من أول فكرة حتى العودة</h2>
+      <p>نحن وكالة سفر وسياحة نصمّم الرحلات حول احتياجاتك. نسمع منك، نقترح البرنامج المناسب، ونبقى معك على الهاتف طوال الرحلة. هدفنا أن تعود وأنت تخطط للرحلة القادمة معنا.</p>
+    </div>
+    <div>
+    <div class="bot-note"><img src="assets/nakhob-head.png" alt="" width="56" height="56"><p><b>نخوب يشرح لك:</b> هكذا نرتّب رحلتك في أربع خطوات.</p></div>
+    <ol class="steps">
+      <li><div><b>أخبرنا عن رحلتك</b><span>الوجهة، التواريخ، عدد المسافرين، والميزانية.</span></div></li>
+      <li><div><b>نرسل لك عرضاً مفصّلاً</b><span>برنامج يومي، فنادق، وسعر نهائي بلا رسوم مخفية.</span></div></li>
+      <li><div><b>نؤكد الحجز ونجهّز الأوراق</b><span>التذاكر والتأشيرات والقسائم في رسالة واحدة.</span></div></li>
+      <li><div><b>سافر ونحن معك</b><span>دعم على مدار الساعة حتى تعود إلى بيتك.</span></div></li>
+    </ol>
+    </div>
+  </div>
+</section>
+
+<section id="reviews">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><p class="eyebrow">آراء العملاء</p><h2>ماذا يقول المسافرون معنا</h2></div>
+      <span class="sample">نصوص تجريبية تُستبدل بآراء العملاء الحقيقية</span>
+    </div>
+    <div class="quotes">
+      <blockquote><span class="stars" aria-label="٥ من ٥">★★★★★</span><p>نموذج رأي: تنظيم ممتاز من الاستقبال في المطار حتى آخر يوم، والفندق كان أفضل من المتوقع.</p><footer><b>اسم العميل</b> · رحلة إلى تركيا<div class="wrap credits">صور المعالم من ويكيميديا كومنز: <a href="https://commons.wikimedia.org/w/index.php?curid=92764904" target="_blank" rel="noopener">Pigeon Rocks of Beirut, Rock of Raouche, Beirut, Lebanon</a> (Vyacheslav Argenberg، CC BY 4.0)، <a href="https://commons.wikimedia.org/w/index.php?curid=15798633" target="_blank" rel="noopener">Giza-pyramids</a> (Robster1983 at English Wikipedia، CC CC0 1.0)، <a href="https://commons.wikimedia.org/w/index.php?curid=90567505" target="_blank" rel="noopener">Beauty of Sigiriya by Binuka</a> (Binuka poojan، CC BY-SA 4.0)، <a href="https://commons.wikimedia.org/w/index.php?curid=150354817" target="_blank" rel="noopener">View of Topkapı Palace from the Galata Tower, Istanbul, Turk</a> (Moonik، CC BY-SA 3.0)، <a href="https://commons.wikimedia.org/w/index.php?curid=92184507" target="_blank" rel="noopener">2019-07-25 Hagia Sophia, Istanbul</a> (Maksym Kozlenko، CC BY-SA 4.0)، <a href="https://commons.wikimedia.org/w/index.php?curid=1661522" target="_blank" rel="noopener">Petronas Towers Night</a> (Jens Petersen، CC BY 2.5)، <a href="https://commons.wikimedia.org/w/index.php?curid=87353896" target="_blank" rel="noopener">Sultan Qaboos Grand Mosque (20517260391)</a> (Riyadh Al Balushi، CC BY 2.0)، <a href="https://commons.wikimedia.org/w/index.php?curid=41245735" target="_blank" rel="noopener">Pyramid of Khafre and Sphinx, Giza, Greater Cairo, Egypt</a> (M1chu، CC BY-SA 3.0)، <a href="https://commons.wikimedia.org/w/index.php?curid=114149326" target="_blank" rel="noopener">Gold Beach at Ras Um Sid Bay</a> (Serhio Magpie، CC BY 4.0)، <a href="https://commons.wikimedia.org/w/index.php?curid=3823429" target="_blank" rel="noopener">Cafe des delices in Sidi Bou Said</a> (Helder da Rocha، CC BY-SA 2.0)، <a href="https://commons.wikimedia.org/w/index.php?curid=7553881" target="_blank" rel="noopener">Sumela monastery in province of Trabzon, Turkey view from th</a> (Babbsack، CC BY-SA 3.0)</div>
+</footer></blockquote>
+      <blockquote><span class="stars" aria-label="٥ من ٥">★★★★★</span><p>نموذج رأي: رتّبوا لنا شهر عسل بتفاصيل جميلة وكانوا متواجدين على الواتساب طوال الوقت.</p><footer><b>اسم العميل</b> · المالديف</footer></blockquote>
+      <blockquote><span class="stars" aria-label="٥ من ٥">★★★★★</span><p>نموذج رأي: خلّصوا لنا التأشيرة بسرعة، والبرنامج كان مناسباً للأطفال.</p><footer><b>اسم العميل</b> · جورجيا</footer></blockquote>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow">تواصل معنا</p>
+      <h2>جاهز للرحلة؟ أرسل طلبك وسنعود إليك بعرض</h2>
+      <div class="info">
+        <div><span>واتساب</span><b>0776 333 3443</b></div>
+        <div><span>الهاتف</span><b>0775 720 3010</b></div>
+        <div><span>العنوان</span><b style="direction:rtl">بغداد، المنصور، شارع ١٤ رمضان، بناية حلويات العسل، مجمع رويال كلكسي</b></div>
+        <div><span>رقم الإجازة</span><b>٨٦٩</b></div>
+      </div>
+      <div class="contact-bot"><img src="assets/nakhob.webp" alt="نخوب" width="420" height="504"><p class="bubble">عبّئ النموذج وأنا أوصل طلبك لفريق الحجوزات على واتساب.</p></div>
+    </div>
+    <form class="book" id="book" novalidate>
+      <div><label for="f-name">الاسم الكامل</label><input id="f-name" required autocomplete="name"></div>
+      <div><label for="f-phone">رقم الجوال</label><input id="f-phone" type="tel" required dir="ltr" placeholder="07xxxxxxxxx" autocomplete="tel"></div>
+      <div><label for="f-dest">الوجهة أو الباقة</label><input id="f-dest" value="إسطنبول"></div>
+      <div><label for="f-date">تاريخ السفر المتوقع</label><input id="f-date" type="date"></div>
+      <div><label for="f-adults">البالغون</label><input id="f-adults" type="number" min="1" value="2"></div>
+      <div><label for="f-kids">الأطفال</label><input id="f-kids" type="number" min="0" value="0"></div>
+      <div class="full"><label for="f-notes">ملاحظات (الميزانية، نوع الفندق، طلبات خاصة)</label><textarea id="f-notes"></textarea></div>
+      <p class="err full" id="f-err" hidden>اكتب الاسم ورقم الجوال حتى نتمكن من التواصل معك.</p>
+      <button class="btn btn-sun full" type="submit">أرسل الطلب عبر واتساب</button>
+      <div class="ok" id="f-ok" hidden><img src="assets/nakhob-head.png" alt="" width="48" height="48"><div><b>نخوب:</b> جهّزنا رسالتك. إذا لم يفتح واتساب تلقائياً <a id="f-walink" href="#" target="_blank" rel="noopener">اضغط هنا لفتحه</a>، أو انسخ النص التالي وأرسله إلينا:<pre id="f-msg"></pre></div></div>
+    </form>
+  </div>
+</section>
+
+<footer class="site">
+  <div class="wrap"><span style="display:flex;align-items:center;gap:10px"><img src="assets/emblem-white.png" alt="" width="40" height="33" style="width:40px;height:auto">© ٢٠٢٦ رحلة النخبة للسفر والسياحة · Elite Trip</span><span>رقم الإجازة: ٨٦٩</span></div>
+</footer>
+
+<a class="wa" id="wa" href="https://wa.me/9647763333443" target="_blank" rel="noopener" aria-label="تحدث مع نخوب عبر واتساب">
+  <span class="ava"><img src="assets/nakhob-head.png" alt="" width="62" height="62"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4a.5.5 0 0 0 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.7-1.2 2.2 2.2 0 0 0 .2-1.2c-.1-.1-.3-.2-.5-.3z"/></svg></span></span><span class="tip">اسأل نخوب</span>
+</a>
+
+<script>
+document.documentElement.lang="ar";document.documentElement.dir="rtl";
+const WA="9647763333443";
+const DATA=/*DATA*/{"updated": "2026-10-17", "source": "Google Sheet: عروض شركة رحلة النخبة للسفر والسياحة (sell price column only)", "groups": [{"id": "ist", "title": "إسطنبول", "code": "IST", "region": "tr", "img": "ist", "dur": "٦ أيام / ٥ ليالٍ، وحتى ١٥ يوماً", "air": "الخطوط الجوية العراقية", "dates": "رحلات يومية من ١٧ إلى ٢٤ أكتوبر", "from": 670, "inc": ["طيران ذهاب وعودة", "فندق", "استقبال وتوديع"], "hotels": "فنادق ٣ إلى ٥ نجوم في الفاتح وتوب كابي", "sheet": "اسطنبول عراقية"}, {"id": "tzx", "title": "إسطنبول وطرابزون", "code": "TZX", "region": "tr", "img": "tzx", "dur": "٨ أيام: ٣ ليالٍ طرابزون و٤ إسطنبول", "air": "الخطوط الجوية العراقية", "dates": "كل سبت وثلاثاء", "from": 785, "inc": ["طيران ذهاب وعودة", "فندقان", "استقبال وتوديع"], "hotels": "ديدهان، بيست وسترن، موفنبيك في طرابزون", "sheet": "اسطنبول & طرابزون"}, {"id": "bey", "title": "بيروت", "code": "BEY", "region": "lb", "img": "bey", "dur": "٤ أو ٥ أو ٨ أيام", "air": "الخطوط الجوية العراقية", "dates": "رحلات يومية", "from": 500, "inc": ["طيران ذهاب وعودة", "فندق", "استقبال وتوديع"], "hotels": "الحمرا والروشة والمنارة، من ٣ إلى ٥ نجوم", "sheet": "بيروت عراقيه"}, {"id": "cai", "title": "القاهرة", "code": "CAI", "region": "eg", "img": "cai", "dur": "٨ أيام / ٧ ليالٍ", "air": "مصر للطيران", "dates": "السبت ٢٤ و٣١ أكتوبر (الخميس والجمعة +٥٠$)", "from": 540, "inc": ["طيران ذهاب وعودة", "فندق", "الموافقة الأمنية"], "hotels": "الجيزة قرب الأهرامات، الزمالك، مصر الجديدة", "sheet": "كروبات القاهره بغداد"}, {"id": "caissh", "title": "القاهرة وشرم الشيخ", "code": "SSH", "region": "eg", "img": "sph", "dur": "٨ أيام: ٤ ليالٍ القاهرة و٣ شرم", "air": "مصر للطيران", "dates": "السبت ٢٤ و٣١ أكتوبر", "from": 830, "inc": ["طيران ذهاب وعودة", "إفطار في القاهرة", "٣ وجبات في شرم", "نقل بري"], "hotels": "منتجعات خليج نعمة ونبق", "sheet": "كروبات القاهره بغداد"}, {"id": "ssh", "title": "شرم الشيخ", "code": "SSH", "region": "eg", "img": "ssh", "dur": "٨ أيام / ٧ ليالٍ", "air": "العراقية، طيران مباشر من بغداد", "dates": "٢٩ أكتوبر و٥ نوفمبر", "from": 805, "inc": ["طيران مباشر", "منتجع", "٣ وجبات يومياً"], "hotels": "منتجعات ٤ و٥ نجوم", "sheet": "شرم الشيخ"}, {"id": "mct", "title": "مسقط", "code": "MCT", "region": "gulf", "img": "mct", "dur": "٤ أو ٥ أو ٨ أيام", "air": "طيران السلام", "dates": "من ٢٠ إلى ٣١ أكتوبر", "from": 425, "inc": ["طيران ذهاب وعودة", "فندق", "استقبال وتوديع"], "hotels": "لا روزا، مسقط بلازا، راديسون بلو، كراند ملينيوم", "sheet": "مسقط بغداد"}, {"id": "kul", "title": "ماليزيا", "code": "KUL", "region": "asia", "img": "kul", "dur": "٩ أيام / ٨ ليالٍ", "air": "الخطوط الجوية العراقية", "dates": "٢٢ و٢٩ أكتوبر، ٥ و١٢ نوفمبر", "from": 1350, "inc": ["طيران ذهاب وعودة", "فندق", "جولات", "استقبال وتوديع"], "hotels": "كوالالمبور مع لنكاوي أو بينانغ أو سنغافورة أو بالي أو المالديف", "sheet": "ماليزيا"}, {"id": "cmb", "title": "سريلانكا", "code": "CMB", "region": "asia", "img": "cmb", "dur": "٩ أيام في ٤ مدن", "air": "العربية للطيران", "dates": "٢٢ أكتوبر", "from": 1150, "inc": ["طيران ذهاب وعودة", "فنادق", "الفيزا", "استقبال وتوديع"], "hotels": "كولومبو، كاندي، نوارا إليا، بينتوتا", "sheet": "رحلات سريلانكا New"}], "events": [{"id": "kazim-ist", "title": "كاظم الساهر رأس السنة في إسطنبول", "img": "gal", "dur": "٨ أيام / ٧ ليالٍ", "dates": "فلاي بغداد ٢٧ ديسمبر، أو العراقية ٢٨ ديسمبر", "from": 495, "inc": ["طيران ذهاب وعودة", "فندق ٣ إلى ٥ نجوم"], "note": "تذكرة الحفل غير مشمولة، تبدأ من ٢٠٠$", "sheet": "كاظم الساهر اسطنبول راس السنة"}, {"id": "ragheb-tun", "title": "راغب علامة على مسرح قرطاج", "img": "tun", "dur": "٨ أيام / ٧ ليالٍ في تونس", "dates": "السفر ٢٢ أكتوبر والحفل ٢٤ أكتوبر", "from": 730, "inc": ["طيران الملكية الأردنية", "فندق مع إفطار"], "note": "تذكرة الحفل ٧٠$ أو VIP ١٢٠$", "feat": true, "sheet": "تونس حفلة راغب علامه"}, {"id": "nye-bey", "title": "رأس السنة في بيروت", "img": "bey", "dur": "٤ أو ٥ أو ٨ أيام", "dates": "العراقية ٢٥ و٢٦ ديسمبر", "from": 530, "inc": ["طيران ذهاب وعودة", "فندق مع إفطار", "النقل إلى الحفلة"], "note": "", "sheet": "بيروت راس السنه"}], "visas": [{"c": "تايلند", "f": "th", "rows": [["اعتيادية", "١٥ إلى ٣٠ يوم عمل", 50], ["سريعة", "٧ إلى ١٠ أيام عمل", 103], ["عاجلة", "٣ إلى ٥ أيام عمل", 253]], "req": "جواز صالح ٦ أشهر، صورة بخلفية بيضاء، البطاقة الموحدة، كشف حساب ٣ أشهر"}, {"c": "الأردن", "f": "jo", "rows": [["اعتيادية", "١٠ أيام عمل", 30], ["سريعة", "٨ أيام عمل", 38], ["عاجلة إلكترونية", "٥ أيام عمل", 73]], "req": "جواز واضح فقط"}, {"c": "الإمارات", "f": "ae", "rows": [["شهر للبالغ", "٣ إلى ٥ أيام عمل", 78], ["شهر للطفل", "٣ إلى ٥ أيام عمل", 18], ["شهران للبالغ", "٣ إلى ٥ أيام عمل", 165]], "req": "جواز صالح ٦ أشهر، صورة بخلفية بيضاء، البطاقة الموحدة"}, {"c": "السعودية", "f": "sa", "rows": [["إقامة ١٠ أيام", "٣ إلى ٥ أيام عمل", 140], ["إقامة ٣٠ يوماً", "٣ إلى ٥ أيام عمل", 193]], "req": "جواز صالح ٦ أشهر، صورة، تواريخ دخول وخروج، وسيلة السفر"}, {"c": "سلطنة عُمان", "f": "om", "rows": [["١٠ أيام", "٣ إلى ٥ أيام عمل", 19], ["١٠ أيام فورية", "٤٨ ساعة", 38], ["٣٠ يوماً", "٣ إلى ٥ أيام عمل", 58]], "req": "جواز صالح ٦ أشهر، صورة بخلفية بيضاء، البطاقة الموحدة"}, {"c": "مصر", "f": "eg", "rows": [["موافقة اعتيادية", "٣ إلى ٥ أيام عمل", 8], ["تأشيرة إلكترونية (٦٠ سنة فأكثر أو ١٦ فأقل)", "٥ إلى ٧ أيام عمل", 38], ["موافقة VIP", "يوم إلى يومين", 103]], "req": "جواز واضح"}, {"c": "تركيا", "f": "tr", "rows": [["حجز موعد", "١ إلى ٥ ساعات", 10]], "req": "الجواز، رقم المسافر، تاريخ السفر المتوقع"}, {"c": "إندونيسيا", "f": "id", "rows": [["اعتيادية", "١٠ إلى ١٥ يوم عمل", 81], ["عاجلة", "٥ إلى ٧ أيام عمل", 128]], "req": "جواز صالح ٦ أشهر، صورة، تحديد الوجهة (بالي أو جاكارتا)", "refund": true}, {"c": "سنغافورة", "f": "sg", "rows": [["سياحية", "١٠ أيام عمل", 78]], "req": "جواز صالح ٦ أشهر، صورة، تأييد عمل"}, {"c": "سريلانكا", "f": "lk", "rows": [["سياحية", "٣ أيام عمل", 63], ["سريعة", "٢٤ ساعة", 78]], "req": "جواز صالح ٦ أشهر وتاريخ السفر"}, {"c": "كمبوديا", "f": "kh", "rows": [["سياحية", "٣ إلى ٥ أيام عمل", 43], ["سريعة", "٢ إلى ٣ أيام عمل", 63]], "req": "جواز صالح ٦ أشهر، صورة، كشف حساب"}, {"c": "الصين", "f": "cn", "rows": [["تأشيرة فقط", "٧ إلى ١٠ أيام عمل", 100]], "req": "الجواز الأصلي، صورتان، البطاقة الموحدة وبطاقة السكن والدعوة", "refund": true}, {"c": "باكستان", "f": "pk", "rows": [["اعتيادية", "٧ إلى ١٠ أيام عمل", 100], ["سريعة", "٣ إلى ٥ أيام عمل", 128]], "req": "جواز، صورة بخلفية بيضاء، البطاقة الموحدة"}, {"c": "الفلبين", "f": "ph", "rows": [["سياحية", "١٠ إلى ٢٠ يوم عمل", 173]], "req": "جواز، صورة، عدم محكومية، كشف حساب ٦ أشهر، تأييد عمل، دعوة، مراجعة السفارة في بغداد"}, {"c": "البحرين", "f": "bh", "rows": [["١٤ يوماً", "٣ إلى ٥ أيام عمل", 36], ["٣٠ يوماً متعددة", "٣ إلى ٥ أيام عمل", 53]], "req": "تتطلب إقامة في إحدى دول الخليج"}, {"c": "قطر", "f": "qa", "rows": [["سياحية", "١ إلى ٣ أيام عمل", 73]], "req": "تتطلب إقامة خليجية أو فيزا شنغن أو بريطانيا أو أمريكا"}, {"c": "المغرب", "f": "ma", "rows": [["اعتيادية", "٣ إلى ٥ أيام عمل", 100], ["فورية", "٢٤ ساعة عمل", 123]], "req": "تتطلب إقامة خليجية أو فيزا شنغن أو بريطانيا أو أمريكا أو اليابان"}, {"c": "كينيا", "f": "ke", "rows": [["سياحية", "٧ إلى ١٠ أيام عمل", 43]], "req": "جواز، صورة، تواريخ السفر"}, {"c": "إثيوبيا", "f": "et", "rows": [["سياحية", "٥ إلى ١٠ أيام عمل", 78]], "req": "جواز، صورة بخلفية بيضاء"}, {"c": "موريشيوس", "f": "mu", "rows": [["سياحية ١٥ يوماً", "١٠ إلى ١٥ يوم عمل", 28]], "req": "جواز، صورة، كشف حساب ٣ أشهر"}, {"c": "مدغشقر", "f": "mg", "rows": [["سياحية ١٥ يوماً", "٢ إلى ٤ أيام عمل", 78]], "req": "جواز، صورة، تواريخ الدخول والخروج"}, {"c": "سوريا", "f": "sy", "rows": [["اعتيادية", "٢٠ إلى ٥٠ يوم عمل", 123], ["سريعة", "٧٢ ساعة عمل", 288]], "req": "جواز سكنر"}]}/*END*/;
+const IMG={"tzx": "assets/photos/tzx.webp", "kul": "assets/photos/kul.webp", "ist": "assets/photos/ist.webp", "mct": "assets/photos/mct.webp", "tun": "assets/photos/tun.webp", "cai": "assets/photos/cai.webp", "gal": "assets/photos/gal.webp", "bey": "assets/photos/bey.webp", "cmb": "assets/photos/cmb.webp", "ssh": "assets/photos/ssh.webp", "sph": "assets/photos/sph.webp"};
+const FLAG={"ph": "assets/flags/ph.svg", "tr": "assets/flags/tr.svg", "lk": "assets/flags/lk.svg", "om": "assets/flags/om.svg", "sa": "assets/flags/sa.svg", "pk": "assets/flags/pk.svg", "jo": "assets/flags/jo.svg", "mu": "assets/flags/mu.svg", "bh": "assets/flags/bh.svg", "et": "assets/flags/et.svg", "ke": "assets/flags/ke.svg", "ma": "assets/flags/ma.svg", "kh": "assets/flags/kh.svg", "qa": "assets/flags/qa.svg", "eg": "assets/flags/eg.svg", "sg": "assets/flags/sg.svg", "ae": "assets/flags/ae.svg", "th": "assets/flags/th.svg", "cn": "assets/flags/cn.svg", "sy": "assets/flags/sy.svg", "mg": "assets/flags/mg.svg", "id": "assets/flags/id.svg"};
+const ar=n=>Number(n).toLocaleString("ar-EG");
+const DESTS=DATA.groups.map(g=>({...g,n:g.title,c:g.code}));
+const grid=document.getElementById("dest-grid");
+const GRAD="linear-gradient(135deg,#3A2412,#F28322)";
+const bg=k=>IMG[k]?`linear-gradient(180deg,rgba(0,0,0,0) 40%,rgba(0,0,0,.7)),url(${IMG[k]}) center/cover`:GRAD;
+function render(f){
+  grid.innerHTML=DESTS.filter(d=>f==="all"||d.region===f).map(d=>`
+  <article class="card">
+    <div class="postcard" style="background:${bg(d.img)}"><span class="stamp">BGW ✈ ${d.code}</span><h3>${d.title}</h3></div>
+    <div class="card-body">
+      <p class="dates">📅 ${d.dates}</p>
+      <div class="meta"><span>⏱ ${d.dur}</span><span>✈ ${d.air}</span></div>
+      <p class="hotels">${d.hotels}</p>
+      <ul class="inc">${d.inc.map(i=>`<li>${i}</li>`).join("")}</ul>
+      <div class="card-foot"><p class="price"><small>يبدأ من</small> <b>${ar(d.from)}</b> <small>دولار</small></p>
+      <button class="link" data-dest="${d.title}">احجز مكانك ←</button></div>
+    </div>
+  </article>`).join("");
+}
+render("all");
+document.getElementById("ev-grid").innerHTML=DATA.events.map(e=>`
+  <article class="pkg${e.feat?" feat":""}">
+    <div class="pkg-img" style="background:${bg(e.img)}"></div>
+    ${e.feat?'<span class="tag">قريباً</span>':""}
+    <h3>${e.title}</h3>
+    <p class="pkg-dur">${e.dur} · ${e.dates}</p>
+    <ul>${e.inc.map(i=>`<li>${i}</li>`).join("")}</ul>
+    ${e.note?`<p class="pkg-note">${e.note}</p>`:""}
+    <p class="price"><small>يبدأ من</small> <b>${ar(e.from)}</b> <small>دولار</small></p>
+    <a class="btn${e.feat?" btn-sun":""}" href="#contact" data-pkg="${e.title}">احجز الباقة</a>
+  </article>`).join("");
+const vgrid=document.getElementById("v-grid");
+function renderV(q){
+  q=(q||"").trim();
+  const list=DATA.visas.filter(v=>!q||v.c.includes(q));
+  vgrid.innerHTML=list.length?list.map(v=>`
+  <article class="visa">
+    <header>${FLAG[v.f]?`<img src="${FLAG[v.f]}" alt="علم ${v.c}" width="40" height="30">`:""}<h3>${v.c}</h3>${v.refund?'<span class="refund">مسترجع عند الرفض</span>':""}</header>
+    <table><tbody>${v.rows.map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td><td class="vp">${ar(r[2])}$</td></tr>`).join("")}</tbody></table>
+    <p class="req">${v.req}</p>
+    <button class="link" data-dest="فيزا ${v.c}">اطلب الفيزا ←</button>
+  </article>`).join(""):'<p class="empty">ما لقينا هالدولة بالقائمة، راسلنا على واتساب ونفحص لك.</p>';
+}
+renderV("");
+document.getElementById("v-q").addEventListener("input",e=>renderV(e.target.value));
+vgrid.addEventListener("click",e=>{const b=e.target.closest("[data-dest]");if(b)goBook(b.dataset.dest)});
+document.querySelectorAll(".upd").forEach(x=>x.textContent=DATA.updated);
+document.getElementById("st-groups").textContent=ar(DATA.groups.length);
+document.getElementById("st-visas").textContent=ar(DATA.visas.length);
+document.getElementById("st-from").textContent=ar(Math.min(...DATA.groups.map(g=>g.from)))+"$";
+document.querySelectorAll(".chip").forEach(b=>b.addEventListener("click",()=>{
+  document.querySelectorAll(".chip").forEach(x=>x.setAttribute("aria-pressed","false"));
+  b.setAttribute("aria-pressed","true");render(b.dataset.f);
+}));
+function goBook(dest){document.getElementById("f-dest").value=dest;document.getElementById("contact").scrollIntoView();setTimeout(()=>document.getElementById("f-name").focus({preventScroll:true}),400)}
+grid.addEventListener("click",e=>{const b=e.target.closest("[data-dest]");if(b)goBook(b.dataset.dest)});
+document.getElementById("ev-grid").querySelectorAll("[data-pkg]").forEach(a=>a.addEventListener("click",e=>{e.preventDefault();goBook(a.dataset.pkg)}));
+
+const qd=document.getElementById("q-dest");
+qd.innerHTML=DESTS.map(d=>`<option value="${d.c}">${d.n}</option>`).join("");
+qd.addEventListener("change",()=>{const d=DESTS.find(x=>x.c===qd.value);document.getElementById("qcode").textContent=d.c;document.getElementById("qcity").textContent=d.n});
+document.getElementById("quick").addEventListener("submit",e=>{
+  e.preventDefault();const d=DESTS.find(x=>x.c===qd.value);
+  document.getElementById("f-adults").value=document.getElementById("q-adults").value;
+  document.getElementById("f-kids").value=document.getElementById("q-kids").value;
+  document.getElementById("f-notes").value="شهر السفر: "+document.getElementById("q-month").value;
+  goBook(d.n);
+});
+
+document.getElementById("book").addEventListener("submit",e=>{
+  e.preventDefault();
+  const v=id=>document.getElementById(id).value.trim();
+  const err=document.getElementById("f-err");
+  if(!v("f-name")||!v("f-phone")){err.hidden=false;return}
+  err.hidden=true;
+  const msg=`مرحباً نخوب، أرغب في حجز رحلة:
+الاسم: ${v("f-name")}
+الجوال: ${v("f-phone")}
+الوجهة: ${v("f-dest")||"غير محددة"}
+تاريخ السفر: ${v("f-date")||"مرن"}
+البالغون: ${v("f-adults")} · الأطفال: ${v("f-kids")}
+ملاحظات: ${v("f-notes")||"لا يوجد"}`;
+  const url="https://wa.me/"+WA+"?text="+encodeURIComponent(msg);
+  document.getElementById("f-msg").textContent=msg;
+  document.getElementById("f-walink").href=url;
+  document.getElementById("f-ok").hidden=false;
+  window.open(url,"_blank","noopener");
+});
+</script>
+
+</body>
+</html>
