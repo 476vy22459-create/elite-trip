@@ -127,7 +127,7 @@ nav a:hover{opacity:1;color:var(--sun)}
 .empty{color:var(--muted)}
 /* packages */
 .pkgs{background:var(--surface);border-block:1px solid var(--line)}
-.pkg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.pkg-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px}
 @media (max-width:900px){.pkg-grid{grid-template-columns:1fr}}
 .pkg{border:1.5px solid var(--line);border-radius:var(--r);padding:24px;display:flex;flex-direction:column;gap:14px;background:var(--bg);min-width:0}
 .pkg.feat{background:var(--sky);color:var(--on-sky);border-color:var(--sky)}
